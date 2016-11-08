@@ -1,4 +1,4 @@
-# Docker Creator of scaleway machines
+# Docker Creator of scaleway machines as a jump host
 
 Build a container to create [scaleway](https://www.scaleway.com/) docker machines.
 
@@ -12,6 +12,20 @@ Build a container to create [scaleway](https://www.scaleway.com/) docker machine
 
 ```
 $ docker build -t bee42/scw-docker-machine-creator .
+```
+
+### build args
+
+| ARG                      | Default   |
+|:-------------------------|:----------|
+| COMPOSE_VERSION          | `1.8.1`   |
+| MACHINE_VERSION          | `0.8.2`   |
+| GLIBC_VERSION            | '2.23-r3' |
+| SCALEWAY_VERSION         | `1.11`    |
+| SCALEWAY_MACHINE_VERSION | `1.3`     |
+
+```
+$ docker build --build-args COMPOSE_VERSION=1.9.0-rc3 -t xxx/scw-docker-machine-creator:with_compose_1.9 https://github.com/bee42/scw-docker-machine-creator .
 ```
 
 ## Usage of the creator
@@ -41,7 +55,15 @@ $ export SCALEWAY_TOKEN=xxx
 $ export SCALEWAY_ORGANIZATION=xxx
 $ export SCALEWAY_REGION=ams1
 $ docker-compose up -d
-$ docker-compose exec scw-creator /bin/sh
+$ docker-compose exec --user creator scw-creator /bin/bash
+```
+
+access ssh port
+
+```
+$ ssh \
+ -p $(docker-compose port scw-creator 22 |awk 'BEGIN { FS=":" } /1/ { print $2 }') \
+ creator@127.0.0.1
 ```
 
 ## Usage of scaleway docker machine creator
@@ -66,12 +88,9 @@ $ curl -H "X-Auth-Token: ${SCALEWAY_TOKEN}" \
 "https://cp-${SCALEWAY_REGION}.scaleway.com/images" \
   | jq '.images[] | { "name": .name , "id": .id, "arch": .arch }'
 # create your first docker machine
-$ docker-machine -D create -d scaleway \
- --scaleway-region=ams1 \
- --scaleway-name=scw-beehive42-001 \
- --scaleway-commercial-type "VC1S" \
- --scaleway-debug  \
- scw-beehive42
+$ docker-machine create -d scaleway \
+  --scaleway-name="cloud-scaleway-2" \
+  cloud-scaleway
 ```
 
 ## Hints: Scaleway tools
@@ -81,10 +100,7 @@ $ docker-machine -D create -d scaleway \
 
 ## TODO
 
-* Fix the bug:
-  * Currently the scaleway host is created, but the docker provision is hanging. (2016-01-11)
 * More examples to provision a docker swarming cluster
-* describe the build args
 
 ## Links
 
