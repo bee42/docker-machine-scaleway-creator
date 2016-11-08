@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  scaleway:
+    build: 
+      context: ./
+      args:
+        - MACHINE_VERSION=0.8.2
+        - SCALEWAY_VERSION=1.3
+    image: bee42/docker-machine-scaleway
+    volumes:
+     - ./docker-scaleway-machines:/root/.docker
+     - $HOME/.ssh:/root/.ssh
