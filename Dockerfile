@@ -101,12 +101,12 @@ LABEL org.label-schema.name="scw-creator"  \
  org.label-schema.vendor="bee42 solutions gmbh" \
  org.label-schema.schema-version="1.0" \
  org.label-schema.description="Scaleway cli docker machine creator DinD" \
- com.bee42.scw-creator.license.type="Apache 2.0" \
- com.bee42.scw-creator.license.path="/etc/LICENSE.scw-creator"
+ org.label-schema.license.type="Apache 2.0" \
+ org.label-schema.license.path="/etc/LICENSE.scw-creator"
 
 ADD LICENSE /etc/LICENSE.scw-creator
 RUN COPYDATE=`date  +'%Y'` \
- && echo "infrabricks creator" >/etc/provisioned.scw-creator \
+ && echo "infrabricks scaleway machine creator dind" >/etc/provisioned.scw-creator \
  && date >>/etc/provisioned.scw-creator \
  && echo >>/etc/provisioned.scw-creator \
  && echo " Copyright ${COPYDATE} by <peter.rossbach@bee42.com> bee42 solutions gmbh" >>/etc/provisioned.scw-creator

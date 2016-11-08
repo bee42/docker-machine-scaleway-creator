@@ -10,6 +10,9 @@ This image helps to provision scaleway servers as a docker tool container
 
 # How To start
 
+```
+$ docker-compose build
+```
 
 Provision without docker-compose
 ```
@@ -21,11 +24,11 @@ docker run -it --rm \
  -e SCALEWAY_REGION="ams1" \
  -v $HOME/.ssh/:/root/.ssh \
  -v $(pwd)/docker-machine:/root/.docker \
- scaleway \
+ bee42/docker-machine-scaleway \
  'create -d scaleway cloud-scaleway'
 ```
 
-Provision with Docker-Compose 
+Provision with Docker-Compose
 
 ```bash
 docker-compose run --rm \
@@ -38,7 +41,7 @@ docker-compose run --rm \
  'create -d scaleway cloudway-server-1'
 ```
 
-SSH to a provsioned server 
+SSH to a provsioned server
 
   ```bash
  docker-compose run --rm \
@@ -46,9 +49,9 @@ SSH to a provsioned server
  'ssh cloudway-server-1'
  ```
 
- List all machines
+List all machines
 
-   ```bash
+```bash
  docker-compose run --rm \
  scaleway \
  'ls'

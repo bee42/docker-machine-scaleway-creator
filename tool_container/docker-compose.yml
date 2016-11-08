@@ -2,7 +2,7 @@ version: '2'
 
 services:
   scaleway:
-    build: 
+    build:
       context: ./
       args:
         - MACHINE_VERSION=0.8.2
@@ -11,3 +11,10 @@ services:
     volumes:
      - ./docker-scaleway-machines:/root/.docker
      - $HOME/.ssh:/root/.ssh
+    environment:
+     - SCALEWAY_TOKEN
+     - SCALEWAY_ORGANIZATION
+     - SCALEWAY_REGION
+     - SCALEWAY_NAME
+     - SCALEWAY_COMMERCIAL_TYPE
+     - SCALEWAY_REGION
