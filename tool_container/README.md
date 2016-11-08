@@ -22,8 +22,8 @@ docker run -it --rm \
  -e SCALEWAY_NAME="cloudway-server-1" \
  -e SCALEWAY_COMMERCIAL_TYPE="VC1S" \
  -e SCALEWAY_REGION="ams1" \
- -v $HOME/.ssh/:/root/.ssh \
- -v $(pwd)/docker-machine:/root/.docker \
+ -v $(pwd)/.docker:/$(pwd)/.docker \
+ -w $(pwd)
  bee42/docker-machine-scaleway \
  'create -d scaleway cloud-scaleway'
 ```
@@ -31,12 +31,13 @@ docker run -it --rm \
 Provision with Docker-Compose
 
 ```bash
+export SCALEWAY_TOKEN=xxxx
+export SCALEWAY_ORGANIZATION=xxxx
+export SCALEWAY_NAME="cloudway-server-1"
+-e SCALEWAY_COMMERCIAL_TYPE="VC1S"
+-e SCALEWAY_REGION="ams1" \
+
 docker-compose run --rm \
- -e SCALEWAY_TOKEN=xxxx \
- -e SCALEWAY_ORGANIZATION=xxxx \
- -e SCALEWAY_NAME="cloudway-server-1" \
- -e SCALEWAY_COMMERCIAL_TYPE="VC1S" \
- -e SCALEWAY_REGION="ams1" \
  scaleway \
  'create -d scaleway cloudway-server-1'
 ```

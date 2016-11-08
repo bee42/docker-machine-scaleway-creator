@@ -9,12 +9,12 @@ services:
         - SCALEWAY_VERSION=1.3
     image: bee42/docker-machine-scaleway
     volumes:
-     - ./docker-scaleway-machines:/root/.docker
-     - $HOME/.ssh:/root/.ssh
+      - ./docker-scaleway-machines:/root/.docker
+    workdir: .
     environment:
-     - SCALEWAY_TOKEN
-     - SCALEWAY_ORGANIZATION
-     - SCALEWAY_REGION
-     - SCALEWAY_NAME
-     - SCALEWAY_COMMERCIAL_TYPE
-     - SCALEWAY_REGION
+      - SCALEWAY_TOKEN
+      - SCALEWAY_ORGANIZATION
+      - SCALEWAY_REGION
+      - SCALEWAY_NAME
+      - SCALEWAY_COMMERCIAL_TYPE
+      - SCALEWAY_REGION

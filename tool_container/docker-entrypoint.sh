@@ -1,3 +1,3 @@
 #!/bin/sh
 
-exec docker-machine $@
+exec docker-machine --storage-path $(pwd)/.docker $@
