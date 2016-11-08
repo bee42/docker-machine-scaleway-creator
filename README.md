@@ -34,6 +34,16 @@ More services are available
 | 2375 | uncrypted docker engine |
 | 9001 | supervisord admin       |
 
+## Usage with docker compose
+
+```
+$ export SCALEWAY_TOKEN=xxx
+$ export SCALEWAY_ORGANIZATION=xxx
+$ export SCALEWAY_REGION=ams1
+$ docker-compose up -d
+$ docker-compose exec scw-creator /bin/sh
+```
+
 ## Usage of scaleway docker machine creator
 
 ```
@@ -46,13 +56,14 @@ EOF
 $ source scw_access
 # par1 | ams1
 $ curl -H "X-Auth-Token: ${SCALEWAY_TOKEN}" \
- -H 'Content-Type: application/json' \ https://cp-${SCALEWAY_REGION}.scaleway.com/servers
+ -H 'Content-Type: application/json' \
+"https://cp-${SCALEWAY_REGION}.scaleway.com/servers"
 $ curl -H "X-Auth-Token: ${SCALEWAY_TOKEN}" \
   -H 'Content-Type: application/json' \
-  https://cp-${SCALEWAY_REGION}.scaleway.com/images | jq ".images[]"
+"https://cp-${SCALEWAY_REGION}.scaleway.com/images" | jq ".images[]"
 $ curl -H "X-Auth-Token: ${SCALEWAY_TOKEN}" \
   -H 'Content-Type: application/json' \
-  https://cp-${SCALEWAY_REGION}.scaleway.com/images \
+"https://cp-${SCALEWAY_REGION}.scaleway.com/images" \
   | jq '.images[] | { "name": .name , "id": .id, "arch": .arch }'
 # create your first docker machine
 $ docker-machine -D create -d scaleway \
@@ -85,7 +96,7 @@ $ docker-machine -D create -d scaleway \
 * http://blog.hypriot.com/post/test-build-and-package-docker-for-arm-the-official-way/
 * http://blog.hypriot.com/post/setting-up-100-nodes-jenkins-cluster-with-docker-swarm-in-less-than-10-minutes/
 * https://github.com/scaleway-community/scaleway-docker
-
+* https://nathanleclaire.com/blog/2016/08/11/curl-with-http2-support---a-minimal-alpine-based-docker-image/
 ***
 
 Regards

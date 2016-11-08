@@ -14,7 +14,7 @@ ENV COMPOSE_VERSION=${COMPOSE_VERSION:-1.8.1} \
   SCALEWAY_MACHINE_VERSION=${SCALEWAY_MACHINE_VERSION:-1.3} \
   SCALEWAY_VERSION=${SCALEWAY_VERSION:-1.11}
 
-RUN apk add --update curl && \
+RUN apk add --update ca-certificates openssl curl && \
     curl -o glibc.apk -L "https://github.com/andyshinn/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk" && \
     apk add --allow-untrusted glibc.apk && \
     curl -o glibc-bin.apk -L "https://github.com/andyshinn/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-bin-${GLIBC_VERSION}.apk" && \
