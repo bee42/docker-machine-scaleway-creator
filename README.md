@@ -98,6 +98,24 @@ $ docker-machine create -d scaleway \
 * https://github.com/scaleway/scaleway-cli
 * https://github.com/scaleway/docker-machine-driver-scaleway
 
+## Make your certs transferable
+
+```
+$ dctrl master-node
+$ CONTROL=master-node
+$ eval \$(docker run --rm --volumes-from $CONTROL alpine
+       sed 's/DOCKER_/DOCKERCONTROL_/' /docker/env)"
+# start a container to access this engine
+$ docker run --volumes-from $CONTROL \
+  -e DOCKER_HOST=\$DOCKERCONTROL_HOST \
+  -e DOCKER_TLS_VERIFY=\$DOCKERCONTROL_TLS_VERIFY \
+  -e DOCKER_CERT_PATH=\$DOCKERCONTROL_CERT_PATH \
+  -e DOCKER_API_VERSION=\$DOCKERCONTROL_API_VERSION \
+  …
+```
+
+* https://github.com/jpetazzo/dctrl
+
 ## TODO
 
 * More examples to provision a docker swarming cluster
