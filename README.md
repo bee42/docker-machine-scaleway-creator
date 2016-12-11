@@ -18,10 +18,10 @@ $ docker build -t bee42/scw-docker-machine-creator .
 
 | ARG                      | Default   |
 |:-------------------------|:----------|
-| COMPOSE_VERSION          | `1.8.1`   |
+| COMPOSE_VERSION          | `1.9.0`   |
 | MACHINE_VERSION          | `0.8.2`   |
 | GLIBC_VERSION            | '2.23-r3' |
-| SCALEWAY_VERSION         | `1.11`    |
+| SCALEWAY_VERSION         | `1.11.1`  |
 | SCALEWAY_MACHINE_VERSION | `1.3`     |
 
 ```
@@ -131,7 +131,6 @@ $ docker run --volumes-from $CONTROL \
 * http://blog.hypriot.com/post/setting-up-100-nodes-jenkins-cluster-with-docker-swarm-in-less-than-10-minutes/
 * https://github.com/scaleway-community/scaleway-docker
 * https://nathanleclaire.com/blog/2016/08/11/curl-with-http2-support---a-minimal-alpine-based-docker-image/
-***
 
 Regards
 Peter
