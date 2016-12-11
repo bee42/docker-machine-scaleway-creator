@@ -1,4 +1,4 @@
-FROM docker:1.12.3-dind
+FROM docker:1.13.0-rc3-dind
 MAINTAINER Peter Rossbach <peter.rossbach@bee42.com> @PRossbach
 
 ARG COMPOSE_VERSION
@@ -7,12 +7,12 @@ ARG GLIBC_VERSION
 ARG SCALEWAY_VERSION
 ARG SCALEWAY_MACHINE_VERSION
 
-ENV COMPOSE_VERSION=${COMPOSE_VERSION:-1.8.1} \
+ENV COMPOSE_VERSION=${COMPOSE_VERSION:-1.9.0} \
   MACHINE_VERSION=${MACHINE_VERSION:-0.8.2} \
   PORT=2375 \
   GLIBC_VERSION=${GLIC_VERSION:-2.23-r3} \
   SCALEWAY_MACHINE_VERSION=${SCALEWAY_MACHINE_VERSION:-1.3} \
-  SCALEWAY_VERSION=${SCALEWAY_VERSION:-1.11}
+  SCALEWAY_VERSION=${SCALEWAY_VERSION:-1.11.1}
 
 RUN apk add --update ca-certificates openssl curl && \
     curl -o glibc.apk -L "https://github.com/andyshinn/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk" && \
